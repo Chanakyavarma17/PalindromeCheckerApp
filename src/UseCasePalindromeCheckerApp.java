@@ -1,43 +1,37 @@
-import java.util.Stack;
-import java.util.Scanner;
+import java.util.LinkedList;
 public class UseCasePalindromeCheckerApp {
 
   public static void main(String[] args) {
 
-    Scanner sc = new Scanner(System.in);
+    // Define input string
+    String input = "level";
 
-    // Read input from user
-    System.out.print("Enter a string: ");
-    String input = sc.nextLine();
+    // Create LinkedList to store characters
+    LinkedList<Character> list = new LinkedList<>();
 
-    // Convert to lowercase for case-insensitive check
-    input = input.toLowerCase();
-
-    // Create stack
-    Stack<Character> stack = new Stack<>();
-
-    // Step 1: Push characters into stack
+    // Add each character to the list
     for (char c : input.toCharArray()) {
-      stack.push(c);
+      list.add(c);
     }
 
-    // Step 2: Pop and compare
+    // Flag to track palindrome state
     boolean isPalindrome = true;
 
-    for (char c : input.toCharArray()) {
-      if (c != stack.pop()) {
+    // Compare until zero or one element remains
+    while (list.size() > 1) {
+      char first = list.removeFirst();
+      char last = list.removeLast();
+
+      if (first != last) {
         isPalindrome = false;
         break;
       }
     }
 
-    // Step 3: Print result
-    if (isPalindrome) {
-      System.out.println("The string is a Palindrome.");
-    } else {
-      System.out.println("The string is NOT a Palindrome.");
-    }
+    // Display result
+    System.out.println("Input : " + input);
+    System.out.println("Is Palindrome? : " + isPalindrome);
 
-    sc.close();
-    }
+
+  }
 }
