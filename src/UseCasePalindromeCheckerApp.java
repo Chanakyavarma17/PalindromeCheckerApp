@@ -1,41 +1,61 @@
-
+import java.util.Stack;
 public class UseCasePalindromeCheckerApp {
 
   public static void main(String[] args) {
 
-    // Original input
-    String input = "racecar";
+    String input = "Level";
 
-    // Create service object
-    PalindromeService service = new PalindromeService();
+    // Inject strategy
+    PalindromeStrategy strategy = new StackStrategy();
 
-    // Call method
-    boolean result = service.checkPalindrome(input);
+    boolean result = strategy.check(input);
 
-    // Print result
     System.out.println("Input : " + input);
     System.out.println("Is Palindrome? : " + result);
   }
 }
 
-// Service class that contains palindrome logic
-class PalindromeService {
+/**
+ * =========================================================
+ * INTERFACE - PalindromeStrategy
+ * =========================================================
+ */
+interface PalindromeStrategy {
 
-  // Method to check palindrome
-  public boolean checkPalindrome(String input) {
+  boolean check(String input);
+}
 
-    int start = 0;
-    int end = input.length() - 1;
+/**
+ * =========================================================
+ * CLASS - StackStrategy
+ * =========================================================
+ */
+class StackStrategy implements PalindromeStrategy {
 
-    while (start < end) {
-      if (input.charAt(start) != input.charAt(end)) {
+  /**
+   * Implements palindrome validation using Stack.
+   */
+  @Override
+  public boolean check(String input) {
+
+    // Normalize (important for Level → true)
+    input = input.toLowerCase();
+
+    // Create stack
+    Stack<Character> stack = new Stack<>();
+
+    // Push characters
+    for (char c : input.toCharArray()) {
+      stack.push(c);
+    }
+
+    // Compare by popping
+    for (char c : input.toCharArray()) {
+      if (c != stack.pop()) {
         return false;
       }
-      start++;
-      end--;
     }
 
     return true;
-
   }
 }
