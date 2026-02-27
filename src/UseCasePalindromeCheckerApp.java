@@ -3,31 +3,27 @@ public class UseCasePalindromeCheckerApp {
 
   public static void main(String[] args) {
 
-    String input = "madam";
+    // Original input
+    String input = "A man a plan a canal Panama";
 
-    // Call recursive method
-    boolean result = checkString(input, 0, input.length() - 1);
+    // Step 1: Normalize string
+    String normalized = input
+            .replaceAll("\\s+", "") // remove spaces
+            .toLowerCase(); // convert to lowercase
 
-    // Display result
+    // Step 2: Apply palindrome logic
+    boolean isPalindrome = true;
+
+    for (int i = 0; i < normalized.length() / 2; i++) {
+      if (normalized.charAt(i) !=
+              normalized.charAt(normalized.length() - 1 - i)) {
+        isPalindrome = false;
+        break;
+      }
+    }
+
+    // Step 3: Print result
     System.out.println("Input : " + input);
-    System.out.println("Is Palindrome? : " + result);
-  }
-
-  // Recursive method to check palindrome
-  private static boolean checkString(String str, int start, int end) {
-
-    // Base condition: if pointers cross or meet
-    if (start >= end) {
-      return true;
-    }
-
-    // If characters mismatch
-    if (str.charAt(start) != str.charAt(end)) {
-      return false;
-    }
-
-    // Recursive call
-    return checkString(str, start + 1, end - 1);
-
+    System.out.println("Is Palindrome? : " + isPalindrome);
   }
 }
