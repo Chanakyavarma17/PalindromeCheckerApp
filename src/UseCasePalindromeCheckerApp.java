@@ -5,13 +5,25 @@ public class UseCasePalindromeCheckerApp {
 
     String input = "Level";
 
-    // Inject strategy
-    PalindromeStrategy strategy = new StackStrategy();
+    // Use Stack strategy directly (as per UC12 base)
+    StackStrategy strategy = new StackStrategy();
 
+    // ✅ Capture start time
+    long startTime = System.nanoTime();
+
+    // Run algorithm
     boolean result = strategy.check(input);
 
+    // ✅ Capture end time
+    long endTime = System.nanoTime();
+
+    // ✅ Calculate execution time
+    long executionTime = endTime - startTime;
+
+    // Display results
     System.out.println("Input : " + input);
     System.out.println("Is Palindrome? : " + result);
+    System.out.println("Execution Time : " + executionTime + " ns");
   }
 }
 
@@ -21,7 +33,6 @@ public class UseCasePalindromeCheckerApp {
  * =========================================================
  */
 interface PalindromeStrategy {
-
   boolean check(String input);
 }
 
@@ -32,24 +43,17 @@ interface PalindromeStrategy {
  */
 class StackStrategy implements PalindromeStrategy {
 
-  /**
-   * Implements palindrome validation using Stack.
-   */
   @Override
   public boolean check(String input) {
 
-    // Normalize (important for Level → true)
     input = input.toLowerCase();
 
-    // Create stack
     Stack<Character> stack = new Stack<>();
 
-    // Push characters
     for (char c : input.toCharArray()) {
       stack.push(c);
     }
 
-    // Compare by popping
     for (char c : input.toCharArray()) {
       if (c != stack.pop()) {
         return false;
