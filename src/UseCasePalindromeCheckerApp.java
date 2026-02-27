@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class UseCasePalindromeCheckerApp {
   public  static void main(String[] args) {
 
+<<<<<<< HEAD
 
       System.out.println("===================================");
       System.out.println(" Welcome to the Palindrome Checker ");
@@ -11,6 +12,9 @@ public class UseCasePalindromeCheckerApp {
 
 
   }
+=======
+    }
+>>>>>>> b44654b (base setup)
 }
 
 
