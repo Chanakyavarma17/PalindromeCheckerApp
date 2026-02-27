@@ -1,24 +1,31 @@
-import java.util.Scanner;
-
+import java.util.Stack;
 public class UseCasePalindromeCheckerApp {
   public  static void main(String[] args) {
 
-<<<<<<< HEAD
+    // Declare and initialize the input string
+    String input = "noon";
 
-      System.out.println("===================================");
-      System.out.println(" Welcome to the Palindrome Checker ");
-      System.out.println(" Application Version: 1.0 ");
-      System.out.println("===================================");
+    // Create a Stack to store characters
+    Stack<Character> stack = new Stack<>();
 
-
-  }
-=======
+    // Push each character of the string into the stack
+    for (char c : input.toCharArray()) {
+      stack.push(c);
     }
->>>>>>> b44654b (base setup)
+
+    // Assume palindrome initially
+    boolean isPalindrome = true;
+
+    // Iterate again through original string
+    for (char c : input.toCharArray()) {
+      if (c != stack.pop()) {
+        isPalindrome = false;
+        break;
+      }
+    }
+
+    // Display result
+    System.out.println("Input : " + input);
+    System.out.println("Is Palindrome? : " + isPalindrome);
+    }
 }
-
-
-
-
-
-
